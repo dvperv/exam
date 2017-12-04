@@ -1,11 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label } from 'react-bootstrap';
+import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label, Nav, Navbar, NavItem } from 'react-bootstrap';
 import Blaze from 'meteor/gadicc:blaze-react-component';
+import { withTracker } from 'meteor/react-meteor-data';
 
-import '../startup/client/index';
+// import '../startup/client/index';
 
-export default class App extends React.Component{
+class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -82,12 +83,41 @@ export default class App extends React.Component{
 
     render(){
         return(
-            <div>
-                <Blaze template="loginButtons"/>
-                <Form inline>
-
-                </Form>
+            <div className="container">
+                { this.props.currentUser ?
+                    <div>
+                        <Navbar>
+                            <Navbar.Header>
+                                <Navbar.Brand>
+                                    <a href="/search">Exam</a>
+                                </Navbar.Brand>
+                            </Navbar.Header>
+                            <Nav>
+                                <NavItem eventKey={1} href="/search">Поиск</NavItem>
+                                <NavItem eventKey={2} href="/lended">Мои <Glyphicon glyph="book"/></NavItem>
+                                <NavItem eventKey={3} href="/owed">Чужие <Glyphicon glyph="book"/></NavItem>
+                                <NavItem eventKey={4} href="/cabinet"><Glyphicon glyph="cog"/></NavItem>
+                                <Blaze template="atNavButton" ></Blaze>
+                            </Nav>
+                        </Navbar>
+                        {this.props.main}
+                    </div>
+                    :
+                    <Blaze template="atForm" />
+                }
             </div>
         );
     }
 }
+
+export default withTracker(props => {
+    // Do all your reactive data access in this method.
+    // Note that this subscription will get cleaned up when your component is unmounted
+    // const handle = Meteor.subscribe('todoList', props.id);
+
+    return {
+        currentUser: Meteor.user(),
+        // listLoading: !handle.ready(),
+        // tasks: Tasks.find({ listId: props.id }).fetch(),
+    };
+})(App);
