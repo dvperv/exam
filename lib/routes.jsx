@@ -6,6 +6,7 @@ import App from '../imports/ui/App';
 // import Inbox from '../imports/ui/Inbox';
 import Search from '../imports/ui/Search';
 // import Cabinet from '../imports/ui/Cabinet';
+import Exam from '../imports/ui/Exam';
 
 // import Blaze from 'meteor/gadicc:blaze-react-component';
 
@@ -26,6 +27,16 @@ FlowRouter.route('/search', {
             main: <Search/>,
         });
     },
+});
+
+FlowRouter.route('/exam/:_id', {
+    name: 'Exam.show',
+    action(params, queryParams) {
+        mount(App, {
+            main: <Exam _id={params._id}/>,
+        });
+        // console.log("Looking at a list?"+params._id);
+    }
 });
 //
 // FlowRouter.route('/cabinet', {

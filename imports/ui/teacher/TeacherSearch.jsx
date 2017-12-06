@@ -7,7 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 // import '../startup/client/index';
 
-class App extends React.Component{
+class TeacherSearch extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -17,13 +17,8 @@ class App extends React.Component{
             elapsed: 0,
             total: 0,
         };
-        // this.handleClick = this.handleClick.bind(this);
-        // this.handleChangeHH = this.handleChangeHH.bind(this);
-        // this.handleChangeMM = this.handleChangeMM.bind(this);
-        // Disable animating charts by default.
-        //defaults.global.legend = false;
     }
-    //
+
     // handleClick() {
     //     if(this.state.isOn) {
     //         //выключить
@@ -73,27 +68,7 @@ class App extends React.Component{
     render(){
         return(
             <div className="container">
-                { this.props.currentUser ?
-                    <div>
-                        <Navbar>
-                            <Navbar.Header>
-                                <Navbar.Brand>
-                                    <a href="/search">Exam</a>
-                                </Navbar.Brand>
-                            </Navbar.Header>
-                            <Nav>
-                                <NavItem eventKey={1} href="/search">Поиск</NavItem>
-                                <NavItem eventKey={2} href="/lended">Мои <Glyphicon glyph="book"/></NavItem>
-                                <NavItem eventKey={3} href="/owed">Чужие <Glyphicon glyph="book"/></NavItem>
-                                <NavItem eventKey={4} href="/cabinet"><Glyphicon glyph="cog"/></NavItem>
-                                <Blaze template="atNavButton" ></Blaze>
-                            </Nav>
-                        </Navbar>
-                        {this.props.main}
-                    </div>
-                    :
-                    <Blaze template="atForm" />
-                }
+                <p>111</p>
             </div>
         );
     }
@@ -109,4 +84,4 @@ export default withTracker(props => {
         // listLoading: !handle.ready(),
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };
-})(App);
+})(TeacherSearch);

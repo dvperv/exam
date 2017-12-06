@@ -9,6 +9,7 @@ meteor add accounts-password
 meteor add useraccounts:bootstrap
 meteor add gadicc:blaze-react-component
 meteor npm install --save bcrypt
+meteor add alanning:roles
 
 meteor npm install --save react-mounter
 meteor add kadira:flow-router
