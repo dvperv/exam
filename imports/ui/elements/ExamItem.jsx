@@ -22,7 +22,7 @@ class ExamItem extends React.Component{
     render(){
         return(
             <tr>
-                <td>{this.props.exam.status==="open"?<Button href={"/exam/" + this.props.exam._id}><Glyphicon glyph="log-in"/></Button>:""}</td>
+                <td>{this.props.exam.status==="open"?<Button href={"/exam/" + this.props.exam._id + "/0"}><Glyphicon glyph="log-in"/></Button>:""}</td>
                 <td>{this.props.exam.title}</td>
                 <td>{this.props.exam.teacher}</td>
                 <td>{this.props.exam.deadline}</td>

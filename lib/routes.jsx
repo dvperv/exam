@@ -17,7 +17,7 @@ FlowRouter.route('/', {
     },
 });
 
-FlowRouter.route('/search', {
+FlowRouter.route('/search', {//TODO Если приходит с _id, значит завершен экзамен, надо признак поставить
     triggersEnter: [function(context, redirect) {
         if (!Meteor.user()) redirect('/');
     }],
@@ -29,11 +29,11 @@ FlowRouter.route('/search', {
     },
 });
 
-FlowRouter.route('/exam/:_id', {
+FlowRouter.route('/exam/:_id/:q_id', {
     name: 'Exam.show',
     action(params, queryParams) {
         mount(App, {
-            main: <Exam _id={params._id}/>,
+            main: <Exam _id={params._id} q_id={params.q_id}/>,
         });
         // console.log("Looking at a list?"+params._id);
     }

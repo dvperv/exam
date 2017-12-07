@@ -21,20 +21,17 @@ class Question extends React.Component{
 
     render(){
         return(
-            <tr>
-                <td>{this.props.exam.status==="open"?<Button href={"/exam/" + this.props.exam._id}><Glyphicon glyph="log-in"/></Button>:""}</td>
-                <td>{this.props.exam.title}</td>
-                <td>{this.props.exam.teacher}</td>
-                <td>{this.props.exam.deadline}</td>
-                <td>{this.props.exam.status}</td>
-                <td>{this.props.exam.score}{' '}{this.props.exam.score?(this.props.exam.passed?<Glyphicon glyph="ok"/>:<Glyphicon glyph="remove"/>):""}</td>
-            </tr>);
+            <div>
+                <p>вопрос {this.props.q_id}</p>
+                <h1>{this.props.question.question}</h1>
+            </div>
+            );
     }
 }
 
 Question.propTypes = {
-    key: PropTypes.number,
-    exam: PropTypes.object,
+    q_id: PropTypes.number,
+    question: PropTypes.object,
 };
 
 export default withTracker(props => {
@@ -44,8 +41,8 @@ export default withTracker(props => {
 
     return {
         currentUser: Meteor.user(),
-        key: props.key,
-        exam: props.exam,
+        q_id: props.key,
+        question: props.exam,
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };
 })(Question);
