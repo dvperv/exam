@@ -71,30 +71,23 @@ class App extends React.Component{
     // }
 
     render(){
-        return(
+        return(this.props.currentUser ?
             <div className="container">
-                { this.props.currentUser ?
-                    <div>
-                        <Navbar>
-                            <Navbar.Header>
-                                <Navbar.Brand>
-                                    <a href="/search">Exam</a>
-                                </Navbar.Brand>
-                            </Navbar.Header>
-                            <Nav>
-                                <NavItem eventKey={1} href="/search">Поиск</NavItem>
-                                <NavItem eventKey={2} href="/lended">Мои <Glyphicon glyph="book"/></NavItem>
-                                <NavItem eventKey={3} href="/owed">Чужие <Glyphicon glyph="book"/></NavItem>
-                                <NavItem eventKey={4} href="/cabinet"><Glyphicon glyph="cog"/></NavItem>
-                                <Blaze template="atNavButton" ></Blaze>
-                            </Nav>
-                        </Navbar>
-                        {this.props.main}
-                    </div>
-                    :
-                    <Blaze template="atForm" />
-                }
+                <Navbar>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="/">Exam</a>
+                        </Navbar.Brand>
+                    </Navbar.Header>
+                    <Nav>
+                        <NavItem eventKey={1} href="/search">Поиск</NavItem>
+                        <Blaze template="atNavButton" ></Blaze>
+                    </Nav>
+                </Navbar>
+                {this.props.main}
             </div>
+            :
+            <Blaze template="atForm" />
         );
     }
 }

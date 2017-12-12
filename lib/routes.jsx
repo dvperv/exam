@@ -29,11 +29,11 @@ FlowRouter.route('/search', {//TODO Если приходит с _id, значи
     },
 });
 
-FlowRouter.route('/exam/:_id/:q_id', {
+FlowRouter.route('/exam/:_id/:current', {
     name: 'Exam.show',
     action(params, queryParams) {
         mount(App, {
-            main: <Exam _id={params._id} q_id={params.q_id}/>,
+            main: <Exam _id={Number(params._id)} current={Number(params.current)}/>,
         });
         // console.log("Looking at a list?"+params._id);
     }

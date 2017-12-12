@@ -10,7 +10,6 @@ class Exam extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            current: 0,
             questions: [
                 {
                     question: 'Сколько у тебя рук',
@@ -26,31 +25,45 @@ class Exam extends React.Component{
                         {variant:'Жара', result:0},
                         {variant:'Лето', result:1},
                         {variant:'Осень', result:1},],
-                    total:3},]
+                    total:3},],
         };
+
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleClick(){
+        console.log("Leave happened");//TODO Leave update
+    }
+
+    handleSubmit(){
+        // this.handleClick();
+        // console.log("Exam answers saved");//TODO Submit update
+        alert("Ok");
     }
 
     render(){
+        //
         return(
             <div>
-                <Question q_id={this.props.q_id} question={this.state.questions[this.state.current]}/>
-                <Nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Пред.">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href={"/exam/" + /*this.props.exam._id*/"0" + "/0"}>1</a></li>
-                        <li><a href={"/exam/" + /*this.props.exam._id */"0" + "/1"}>2</a></li>
-                        <li>
-                            <a href="#" aria-label="След.">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </Nav>
-                <Button href={"/search"}>Завершить</Button>
+                <Question question={this.state.questions[this.props.current]}/>
+                <div>
+                <ul className="pagination">
+                    <li>
+                        <a href="/exam/0/0" aria-label="Пред." onClick={this.handleClick}>
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href={"/exam/" + /*this.props.exam._id*/"0" + "/0"} onClick={this.handleClick}>1</a></li>
+                    <li><a href={"/exam/" + /*this.props.exam._id */"0" + "/1"} onClick={this.handleClick}>2</a></li>
+                    <li>
+                        <a href="/exam/0/1" aria-label="След." onClick={this.handleClick}>
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <a className="btn btn-primary" href={"/search"} onClick={this.handleSubmit}>Завершить</a>
             </div>
         );
     }
@@ -58,7 +71,7 @@ class Exam extends React.Component{
 
 Exam.propTypes = {
     _id: PropTypes.number,
-    q_id: PropTypes.number,
+    current: PropTypes.number,
 };
 
 export default withTracker(props => {
@@ -69,7 +82,7 @@ export default withTracker(props => {
     return {
         currentUser: Meteor.user(),
         _id: props._id,
-        q_id: props.q_id,
+        current: props.current,
         // listLoading: !handle.ready(),
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };

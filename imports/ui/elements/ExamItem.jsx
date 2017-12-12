@@ -8,17 +8,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 // import '../startup/client/index';
 
 class ExamItem extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOn: false,
-            HH: 0,
-            MM: 0,
-            elapsed: 0,
-            total: 0,
-        };
-    }
-
     render(){
         return(
             <tr>
@@ -33,7 +22,6 @@ class ExamItem extends React.Component{
 }
 
 ExamItem.propTypes = {
-    key: PropTypes.number,
     exam: PropTypes.object,
 };
 
@@ -44,7 +32,6 @@ export default withTracker(props => {
 
     return {
         currentUser: Meteor.user(),
-        key: props.key,
         exam: props.exam,
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };

@@ -41,15 +41,19 @@ class ExamList extends React.Component{
     render(){
         return(//{this.renderItems}
             <table className="table table-hover">
-                <tr>
-                    <th></th>
-                    <th>Предмет</th>
-                    <th>Преподаватель</th>
-                    <th>Срок</th>
-                    <th>Статус</th>
-                    <th>Оценка</th>
-                </tr>
-                {this.renderItems()}
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Предмет</th>
+                        <th>Преподаватель</th>
+                        <th>Срок</th>
+                        <th>Статус</th>
+                        <th>Оценка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.renderItems()}
+                </tbody>
             </table>
         );
     }

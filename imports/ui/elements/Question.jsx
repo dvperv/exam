@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label, Nav, Navbar, NavItem } from 'react-bootstrap';
-import Blaze from 'meteor/gadicc:blaze-react-component';
+import { ListGroup } from 'react-bootstrap';
 import { withTracker } from 'meteor/react-meteor-data';
 
-// import '../startup/client/index';
+import QuestionItem from './QuestionItem';
 
 class Question extends React.Component{
     constructor(props) {
@@ -17,21 +16,35 @@ class Question extends React.Component{
             elapsed: 0,
             total: 0,
         };
+
+        this.handleAnswerChange = this.handleAnswerChange.bind(this);
     }
 
-    render(){
+    handleAnswerChange(index, value){
+        console.log("Вопрос "+index+" Ответ: " + value);
+    }
+
+    renderItems(){
+        return this.props.question.answers.map((item, index) => (
+            <QuestionItem key={index} index={index} item={item} onAnswerChange={this.handleAnswerChange}/>
+        ));
+    }
+
+    render(){//<p>вопрос {this.props.q_id}</p>
         return(
             <div>
-                <p>вопрос {this.props.q_id}</p>
                 <h1>{this.props.question.question}</h1>
+                <ListGroup>
+                    {this.renderItems()}
+                </ListGroup>
             </div>
             );
     }
 }
 
 Question.propTypes = {
-    q_id: PropTypes.number,
-    question: PropTypes.object,
+    current: PropTypes.number,
+    questions: PropTypes.object,
 };
 
 export default withTracker(props => {
@@ -41,8 +54,7 @@ export default withTracker(props => {
 
     return {
         currentUser: Meteor.user(),
-        q_id: props.key,
-        question: props.exam,
+        question: props.question,
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };
 })(Question);

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label, Nav, Navbar, NavItem } from 'react-bootstrap';
-import Blaze from 'meteor/gadicc:blaze-react-component';
+import { Checkbox, ListGroupItem } from 'react-bootstrap';
+
 import { withTracker } from 'meteor/react-meteor-data';
 
 // import '../startup/client/index';
@@ -10,31 +10,25 @@ import { withTracker } from 'meteor/react-meteor-data';
 class QuestionItem extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            isOn: false,
-            HH: 0,
-            MM: 0,
-            elapsed: 0,
-            total: 0,
-        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        this.props.onAnswerChange(this.props.index, e.target.checked);
     }
 
     render(){
         return(
-            <tr>
-                <td>{this.props.exam.status==="open"?<Button href={"/exam/" + this.props.exam._id}><Glyphicon glyph="log-in"/></Button>:""}</td>
-                <td>{this.props.exam.title}</td>
-                <td>{this.props.exam.teacher}</td>
-                <td>{this.props.exam.deadline}</td>
-                <td>{this.props.exam.status}</td>
-                <td>{this.props.exam.score}{' '}{this.props.exam.score?(this.props.exam.passed?<Glyphicon glyph="ok"/>:<Glyphicon glyph="remove"/>):""}</td>
-            </tr>);
+            <ListGroupItem>
+                <Checkbox onChange={this.handleChange}>{this.props.item.variant}</Checkbox>
+            </ListGroupItem>);
     }
 }
 
 QuestionItem.propTypes = {
-    key: PropTypes.number,
+    index: PropTypes.number,
     exam: PropTypes.object,
+    onAnswerChange: PropTypes.func,
 };
 
 export default withTracker(props => {
@@ -44,8 +38,9 @@ export default withTracker(props => {
 
     return {
         currentUser: Meteor.user(),
-        key: props.key,
-        exam: props.exam,
+        index: props.index,
+        item: props.item,
+        onAnswerChange: props.onAnswerChange,
         // tasks: Tasks.find({ listId: props.id }).fetch(),
     };
 })(QuestionItem);
