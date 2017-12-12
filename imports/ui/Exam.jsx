@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
 import Question from './elements/Question';
 
 class Exam extends React.Component{
@@ -37,13 +39,14 @@ class Exam extends React.Component{
     }
 
     handleSubmit(){
-        // this.handleClick();
-        // console.log("Exam answers saved");//TODO Submit update
-        alert("Ok");
+        this.handleClick();
+        console.log("Exam answers saved");//TODO Submit update
+        // alert("Ok");
+        FlowRouter.go("/search");
     }
 
     render(){
-        //
+        //href={"/search"}
         return(
             <div>
                 <Question question={this.state.questions[this.props.current]}/>
@@ -63,7 +66,7 @@ class Exam extends React.Component{
                     </li>
                 </ul>
                 </div>
-                <a className="btn btn-primary" href={"/search"} onClick={this.handleSubmit}>Завершить</a>
+                <Button bsStyle="primary" onClick={this.handleSubmit}>Завершить</Button>
             </div>
         );
     }
