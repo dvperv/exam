@@ -7,6 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import Question from './elements/Question';
+import TimeChart from './elements/TimeChart';
 
 class Exam extends React.Component{
     constructor(props) {
@@ -49,6 +50,7 @@ class Exam extends React.Component{
         //href={"/search"}
         return(
             <div>
+                <TimeChart total={60*1000}/>
                 <Question question={this.state.questions[this.props.current]}/>
                 <div>
                 <ul className="pagination">

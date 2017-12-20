@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Button, ControlLabel, Form, FormControl, FormGroup, Glyphicon, Label, Nav, Navbar, NavItem } from 'react-bootstrap';
-import Blaze from 'meteor/gadicc:blaze-react-component';
-import { withTracker } from 'meteor/react-meteor-data';
+import { Button, Glyphicon } from 'react-bootstrap';
 
-// import '../startup/client/index';
+import { withTracker } from 'meteor/react-meteor-data';
 
 class ExamItem extends React.Component{
     render(){

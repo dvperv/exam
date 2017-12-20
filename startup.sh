@@ -14,3 +14,4 @@ meteor add alanning:roles
 meteor npm install --save react-mounter
 meteor add kadira:flow-router
 
+meteor remove autopublish

@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { Checkbox, ListGroupItem } from 'react-bootstrap';
-
 import { withTracker } from 'meteor/react-meteor-data';
-
-// import '../startup/client/index';
 
 class QuestionItem extends React.Component{
     constructor(props) {

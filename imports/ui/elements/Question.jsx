@@ -9,14 +9,6 @@ import QuestionItem from './QuestionItem';
 class Question extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            isOn: false,
-            HH: 0,
-            MM: 0,
-            elapsed: 0,
-            total: 0,
-        };
-
         this.handleAnswerChange = this.handleAnswerChange.bind(this);
     }
 
@@ -30,7 +22,7 @@ class Question extends React.Component{
         ));
     }
 
-    render(){//<p>вопрос {this.props.q_id}</p>
+    render(){
         return(
             <div>
                 <h1>{this.props.question.question}</h1>

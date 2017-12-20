@@ -7,13 +7,15 @@ import App from '../imports/ui/App';
 import Search from '../imports/ui/Search';
 // import Cabinet from '../imports/ui/Cabinet';
 import Exam from '../imports/ui/Exam';
+import SchoolList from '../imports/ui/teacher/SchoolList';
+import School from "../imports/ui/teacher/School";
 
 // import Blaze from 'meteor/gadicc:blaze-react-component';
 
 FlowRouter.route('/', {
     name: 'Landing.show',
     action() {
-        mount(App, {main: <Search/>,});
+        mount(SchoolList);
     },
 });
 
@@ -32,10 +34,29 @@ FlowRouter.route('/search', {//TODO Если приходит с _id, значи
 FlowRouter.route('/exam/:_id/:current', {
     name: 'Exam.show',
     action(params, queryParams) {
-        mount(App, {
-            main: <Exam _id={Number(params._id)} current={Number(params.current)}/>,
+        mount(Exam, {
+            _id: Number(params._id),
+            current: Number(params.current),
         });
-        // console.log("Looking at a list?"+params._id);
+    }
+});
+
+FlowRouter.route('/school/edit/:_id', {
+    name: 'School.edit',
+    action(params, queryParams) {
+        mount(School, {
+            _id: params._id,
+            action: 'edit',
+        });
+    }
+});
+
+FlowRouter.route('/school/new', {
+    name: 'School.edit',
+    action(params, queryParams) {
+        mount(School, {
+            action: 'new',
+        });
     }
 });
 //
