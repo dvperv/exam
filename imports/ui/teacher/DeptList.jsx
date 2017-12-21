@@ -21,11 +21,8 @@ class DeptList extends React.Component{
 
     renderItems(){
         return this.props.depts.map((dept) => (
-            <ListGroupItem key={dept._id}>
+            <ListGroupItem key={dept._id} href={"/dept/edit/" + dept._id}>
                 {dept.title}
-                <Button  bsStyle="danger" bsSize="small" className="pull-right">
-                    <Glyphicon glyph="remove"/>
-                </Button>
             </ListGroupItem>
         ));
     }

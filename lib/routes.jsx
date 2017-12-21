@@ -8,7 +8,8 @@ import Search from '../imports/ui/Search';
 // import Cabinet from '../imports/ui/Cabinet';
 import Exam from '../imports/ui/Exam';
 import SchoolList from '../imports/ui/teacher/SchoolList';
-import School from "../imports/ui/teacher/School";
+import School from '../imports/ui/teacher/School';
+import Dept from '../imports/ui/teacher/Dept';
 
 // import Blaze from 'meteor/gadicc:blaze-react-component';
 
@@ -55,6 +56,25 @@ FlowRouter.route('/school/new', {
     name: 'School.edit',
     action(params, queryParams) {
         mount(School, {
+            action: 'new',
+        });
+    }
+});
+
+FlowRouter.route('/dept/edit/:_id', {
+    name: 'Dept.edit',
+    action(params, queryParams) {
+        mount(Dept, {
+            _id: params._id,
+            action: 'edit',
+        });
+    }
+});
+
+FlowRouter.route('/dept/new', {
+    name: 'Dept.edit',
+    action(params, queryParams) {
+        mount(Dept, {
             action: 'new',
         });
     }

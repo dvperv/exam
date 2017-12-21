@@ -47,8 +47,8 @@ Meteor.startup(() => {
             let _id = Schools.insert({title: s.title});
             s.depts.forEach((d)=>{
                 let d_id = Depts.insert({school_id: _id, title: d.title});
-                if(d.groups) d.groups.forEach((g)=>{console.log("School:" + g );Groups.insert({school_id: _id, title: g});});
-                if(d.courses) d.courses.forEach((c)=>Courses.insert({school_id: _id, title: c}));
+                if(d.groups) d.groups.forEach((g)=>{console.log("Group:" + g );Groups.insert({dept_id: d_id, title: g});});
+                if(d.courses) d.courses.forEach((c)=>Courses.insert({dept_id: d_id, title: c}));
             });
         });
 });
