@@ -14,15 +14,15 @@ class CourseList extends React.Component{
 //TODO Remove Add
 
     addItem(title){
-        if(! this.props.courses.includes(title))
-            this.props.deps.push(title);
-        this.props.courses.sort();
+        // if(! this.props.courses.includes(title))
+        //     this.props.deps.push(title);
+        // this.props.courses.sort();
     }
 
     renderItems(){
-        return this.props.courses.map((course) => (
-            <ListGroupItem key={course._id}>
-                {course.title}
+        return this.props.courses.map((item) => (
+            <ListGroupItem key={item._id}>
+                {item.title}
                 <Button  bsStyle="danger" bsSize="small" className="pull-right">
                     <Glyphicon glyph="remove"/>
                 </Button>
@@ -47,16 +47,16 @@ class CourseList extends React.Component{
 }
 
 CourseList.propTypes = {
-    school_id: PropTypes.string,
+    dept_id: PropTypes.string,
 };
 
 export default withTracker(props => {
     // Do all your reactive data access in this method.
     // Note that this subscription will get cleaned up when your component is unmounted
-    // const handle = Meteor.subscribe('todoList', props.id);
-    Meteor.subscribe('courses');
+    // Meteor.subscribe('todoList', props.id);
+    const handle = Meteor.subscribe('courses');
 
     return {
-        courses: Courses.find({school_id: props.school_id}).fetch(),
+        courses: Courses.find({dept_id: props.dept_id}).fetch(),
     };
 })(CourseList);

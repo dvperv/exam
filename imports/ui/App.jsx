@@ -81,6 +81,8 @@ class App extends React.Component{
                     </Navbar.Header>
                     <Nav>
                         <NavItem eventKey={1} href="/search">Поиск</NavItem>
+                        <NavItem eventKey={2} href="/schoollist">Место учебы</NavItem>
+                        <NavItem eventKey={3} href="/exam">Экзамен</NavItem>
                         <Blaze template="atNavButton" ></Blaze>
                     </Nav>
                 </Navbar>

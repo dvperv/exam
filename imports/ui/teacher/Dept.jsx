@@ -28,8 +28,8 @@ class Dept extends React.Component{
                         type="text"
                         placeholder="Название"
                     />
-                    <CourseList dept_id={this.props.dept._id}/>
-                    <GroupList dept_id={this.props.dept._id}/>
+                    <CourseList dept_id={this.props._id}/>
+                    <GroupList dept_id={this.props._id}/>
                 </FormGroup>
             </form>
             :

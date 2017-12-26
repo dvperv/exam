@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
-import {Courses, Depts, Groups, Schools} from '../imports/api/collections';
+import {Courses, Depts, Exams, Groups, Schools} from '../imports/api/collections';
 
 Meteor.startup(() => {
     const schools = [
@@ -51,4 +51,15 @@ Meteor.startup(() => {
                 if(d.courses) d.courses.forEach((c)=>Courses.insert({dept_id: d_id, title: c}));
             });
         });
+
+    const exams = [
+        { title: 'This is exam 1', teacher: "Ivanoff", status: "assigned", deadline: "January 1, 2018 11:13:00", timeToComplete: 240 },
+        //{number:1, question: 'Сколько у тебя рук', answers: [{variant:'Ноль', result:0},{variant:'Две', result:1},{variant:'Десять', result:0},], total:1}
+        //{number:2, question: 'Отметьте времена года', answers: [{variant:'Зима', result:1},{variant:'Жара', result:0},{variant:'Лето', result:1},{variant:'Осень', result:1},], total:3}
+        { title: 'This is exam 2', teacher: "Ivanoff", status: "closed", deadline: "October 13, 2017 11:13:00", passed: true, score: 78, timeToComplete: 240  },
+        { title: 'This is exam 3', teacher: "Petroff", status: "closed", deadline: "October 13, 2017 11:13:00", passed: false, score: 7, timeToComplete: 240  },
+        { title: 'This is exam 4', teacher: "Sidoroff", status: "open", deadline: "January 13, 2018 11:13:00", timeToComplete: 240  },
+    ];
+
+    if(! Exams.find().count()) exams.forEach((e)=>Exams.insert(e));
 });

@@ -14,4 +14,9 @@ if (Meteor.isServer) {
     // This code only runs on the server
     Meteor.publish('schools', () => Schools.find());
     Meteor.publish('depts', () => Depts.find());
+    Meteor.publish('groups', () => Groups.find());
+    Meteor.publish('courses', () => Courses.find());
+
+    Meteor.publish('exams', () => Exams.find());
+    Meteor.publish('questions', () => Questions.find());
 }

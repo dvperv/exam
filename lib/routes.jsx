@@ -3,20 +3,29 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { mount } from 'react-mounter';
 
 import App from '../imports/ui/App';
-// import Inbox from '../imports/ui/Inbox';
 import Search from '../imports/ui/Search';
-// import Cabinet from '../imports/ui/Cabinet';
 import Exam from '../imports/ui/Exam';
 import SchoolList from '../imports/ui/teacher/SchoolList';
 import School from '../imports/ui/teacher/School';
 import Dept from '../imports/ui/teacher/Dept';
 
-// import Blaze from 'meteor/gadicc:blaze-react-component';
+import LockedButton from '../imports/ui/elements/LockedButton';
 
 FlowRouter.route('/', {
     name: 'Landing.show',
     action() {
-        mount(SchoolList);
+        mount(App, {
+            main: <LockedButton glyph="remove" caption="Удалить" locked/>//<Search/>,
+        });
+    },
+});
+
+FlowRouter.route('/schoollist', {
+    name: 'SchoolList.show',
+    action() {
+        mount(App, {
+            main: <SchoolList/>
+        });
     },
 });
 
@@ -79,18 +88,3 @@ FlowRouter.route('/dept/new', {
         });
     }
 });
-//
-// FlowRouter.route('/cabinet', {
-//     triggersEnter: [function(context, redirect) {
-//         if (!Meteor.user()) redirect('/');
-//     }],
-//     // waitOn: function() {
-//     //     return Meteor.subscribe('currentUserInfo');
-//     // },
-//     name: 'Cabinet.show',
-//     action() {
-//         mount(App, {
-//             main: <Cabinet/>,
-//         });
-//     },
-// });

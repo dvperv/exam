@@ -47,7 +47,7 @@ class GroupList extends React.Component{
 }
 
 GroupList.propTypes = {
-    school_id: PropTypes.string,
+    dept_id: PropTypes.string,
 };
 
 export default withTracker(props => {
@@ -57,6 +57,6 @@ export default withTracker(props => {
     Meteor.subscribe('groups');
 
     return {
-        groups: Groups.find({school_id: props.school_id}).fetch(),
+        groups: Groups.find({dept_id: props.dept_id}).fetch(),
     };
 })(GroupList);
